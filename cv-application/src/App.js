@@ -19,7 +19,7 @@ class App extends Component{
       <ThemeProvider theme={theme}>
         <Navbar />
         <Container>
-          <Grid container spacing={5}>
+          <Grid container spacing={8}>
             <Grid item xs={12} sm={6}>
               <Userform />
             </Grid>
