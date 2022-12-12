@@ -5,14 +5,15 @@ import Toolbar from '@mui/material/Toolbar';
 
 const Navbar = () => {
     return(
-        <AppBar position='static' color='primary'>
+        <AppBar position='static' color='primary' sx={{ marginBottom: 3, padding: 1.5 }}>
             <Toolbar sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                gap: 1
             }}>
                 <WorkIcon sx={{fontSize: '2.5rem'}}/>
-                <Typography variant="h4" component="h1" padding={2}>
+                <Typography variant="h4" component="h1">
                     CV APPLICATION
                 </Typography>
             </Toolbar>
