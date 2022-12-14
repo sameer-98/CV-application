@@ -1,40 +1,38 @@
-import React, { Component } from "react";
-import { Typography } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Personal from "./Forms/Personal";
 import WorkExp from "./Forms/WorkExp";
-import EductaionExp from "./Forms/Education";
+import EducationExp from "./Forms/Education";
+import { Component } from "react";
 
 class Userform extends Component{
-
-    constructor(props){
-        super(props)
-        
-        this.state = {}
-    }
+    
     render(){
+        const { fields, handlePersonalFields, handleWorkFields, handleEducationFields } = this.props;
+        const { personal, work, education } = fields;
+
         return (
             <Paper elevation={3} sx={{
-                paddingRight: '20px',
-                paddingTop: '20px',
-                paddingBottom: '20px',
+                padding: '20px',
             }}>
-                <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '20px', marginTop: '20px'}}>
+                <Typography gutterBottom variant="h5" color="primary" sx={{marginLeft: '0', marginTop: '20px'}}>
                     Personal Information
                 </Typography>
-                <Personal/>
-                <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '20px',marginTop: '40px'}}>
+                <Personal fieldValues={personal} handler={handlePersonalFields} />
+                <Typography gutterBottom variant="h5" color="primary" sx={{marginLeft: '0',marginTop: '40px'}}>
                     Work Experience
                 </Typography>
-                <WorkExp/>
-                <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '20px', marginTop: '40px'}}>
+                <WorkExp fieldValues={work} handler={handleWorkFields}/>
+                <Button fullWidth variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
+    
+                <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '0', marginTop: '40px'}}>
                     Education Experience
                 </Typography>
-                <EductaionExp/>
-            </Paper>
-
-        );
+                <EducationExp fieldValues={education} handler={handleEducationFields}/>
+                <Button fullWidth variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
+            </Paper>);
     }
-
 }
+
+
 export default Userform

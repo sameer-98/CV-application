@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Box } from "@mui/system";
-import { TextField } from "@mui/material";
 
 class Preview extends Component{
 
@@ -10,9 +9,9 @@ class Preview extends Component{
         this.state = {}
     }
     render(){
+        console.log(this.props)
         return (<Box>
-
-        
+            
         </Box>);
     }
 
