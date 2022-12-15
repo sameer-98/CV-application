@@ -6,9 +6,13 @@ import EducationExp from "./Forms/Education";
 import { Component } from "react";
 
 class Userform extends Component{
-    
+
+    addHandler = (event) => {
+        this.props.addHandler(event.target.id)
+    }
+
     render(){
-        const { fields, handlePersonalFields, handleWorkFields, handleEducationFields } = this.props;
+        const { fields, handlePersonalFields, handleWorkFields, handleEducationFields, handleWorkDelete, handleEducationDelete } = this.props;
         const { personal, work, education } = fields;
 
         return (
@@ -22,14 +26,14 @@ class Userform extends Component{
                 <Typography gutterBottom variant="h5" color="primary" sx={{marginLeft: '0',marginTop: '40px'}}>
                     Work Experience
                 </Typography>
-                <WorkExp fieldValues={work} handler={handleWorkFields}/>
-                <Button fullWidth variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
-    
+                <WorkExp fieldValues={work} handler={handleWorkFields} deleteHandler={handleWorkDelete}/>
+                <Button fullWidth onClick={this.addHandler} id="work" variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
+            
                 <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '0', marginTop: '40px'}}>
                     Education Experience
                 </Typography>
-                <EducationExp fieldValues={education} handler={handleEducationFields}/>
-                <Button fullWidth variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
+                <EducationExp fieldValues={education} handler={handleEducationFields} deleteHandler={handleEducationDelete}/>
+                <Button fullWidth onClick={this.addHandler} id="education" variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
             </Paper>);
     }
 }

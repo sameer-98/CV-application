@@ -1,7 +1,6 @@
 import { Box } from "@mui/system";
-import { TextField, Button } from "@mui/material";
-import { Grid } from "@mui/material";
 import { Component } from "react";
+import ExperienceItems from "../ExperienceItems";
 
 
 class WorkExp extends Component{
@@ -9,10 +8,14 @@ class WorkExp extends Component{
         super(props)
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleChange(event){
         this.props.handler(event.target.name,event.target.value)
+    }
+    handleDelete(event){
+        this.props.deleteHandler(event.target.id)
     }
     
     render(){
@@ -23,27 +26,21 @@ class WorkExp extends Component{
                 maxWidth: '100%',
                 margin: '0 auto'
             }}>
-                <Grid container spacing={1} columnSpacing={{xs:2}}>
-                    <Grid item xs={12}>
-                        <TextField fullWidth autoComplete="off" value={this.props.position} name="position" onChange={this.handleChange} label="Position" sx={{ m: 1 }} color="secondary" size="small" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField fullWidth autoComplete="off" value={this.props.company} name="company" onChange={this.handleChange} label="Company" sx={{ m: 1 }} color="secondary" size="small" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField fullWidth autoComplete="off" value={this.props.city} name="city" onChange={this.handleChange} label="City" sx={{ m: 1 }}  color="secondary" size="small" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField fullWidth autoComplete="off" value={this.props.workStart} name="workStart" onChange={this.handleChange} label="Start Date" InputLabelProps={{shrink: true,}} sx={{ m: 1 }} size="small" type='date' color="secondary" />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField fullWidth autoComplete="off" value={this.props.workEnd} name="workEnd" onChange={this.handleChange} label="End Date" InputLabelProps={{shrink: true,}} sx={{ m: 1 }} size="small" type='date' color="secondary" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button fullWidth variant="contained" size="large" sx={{ m: 1 }}>Delete</Button>
-                    </Grid>
-        
-                </Grid>
+            {
+                this.props.fieldValues.map(item => {
+                    return <ExperienceItems
+                        key={item.id}
+                        id={item.id}
+                        position={item.position}
+                        company={item.company}
+                        city={item.company}
+                        workStart={item.workStart}
+                        workEnd={item.workEnd}
+                        handleChange={this.handleChange}
+                        handleDelete={this.handleDelete}
+                    />
+                })
+            }   
             </Box>
           ); 
     }

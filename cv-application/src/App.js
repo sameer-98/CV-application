@@ -8,6 +8,7 @@ import { Grid, Box, Typography, Link, IconButton } from '@mui/material';
 import Userform from './components/Userform';
 import Preview from './components/Preview';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import uniqid from "uniqid"
 
 class App extends Component{
   constructor(props){
@@ -23,27 +24,31 @@ class App extends Component{
         number: '',
         description: ''
       },
-      work: {
+      work: [{
+        id: uniqid(),
         position: '',
         company: '',
         city: '',
         workStart: '',
         workEnd: '',
         delete: false
-      },
-      education:{
+      }],
+      education:[{
+        id: uniqid(),
         institute: '',
         city: '',
         degree: '',
         educationStart: '',
         educationEnd: '' ,
         delete: false       
-      }
+      }],
     }
   }
   handleWorkFields = (fieldName, value) => {
     this.setState(prevState => ({
-      work: { ...prevState.work, [fieldName]: value}
+      work: prevState.work.map(workObj => {
+        return{...workObj, [fieldName]: value}
+      })
   }));
   }
   handlePersonalFields = (fieldName, value) => {
@@ -53,25 +58,84 @@ class App extends Component{
   }
   handleEducationFields = (fieldName, value) => {
     this.setState(prevState => ({
-      education: {...prevState.education, [fieldName]:value}
+      education: prevState.education.map(educationObj => {
+        return{...educationObj, [fieldName]: value}
+      })
     }));
   }
+  // Add Button Handler
+  handleAddBtn = (id) => {
+    (id === 'work') ?
+    this.setState(prevState => ({
+      work: prevState.work.concat({
+        id: uniqid(),
+        position: '',
+        company: '',
+        city: '',
+        workStart: '',
+        workEnd: '',
+        delete: false
+      })
+    })) : 
+    
+    this.setState(prevState => ({
+      education: prevState.education.concat({
+        id: uniqid(),
+        institute: '',
+        city: '',
+        degree: '',
+        educationStart: '',
+        educationEnd: '' ,
+        delete: false       
+      }
+
+      )
+    }))
+  }
+  //Delete handler needs  to be separate for work education
+  //  Delete Button Handler
+
+  handleWorkDelete = (id) => {
+    this.setState(prevState => ({
+      work: prevState.work.filter(workObj => workObj.id !== id)
+    }))
+  };
+  handleEducationDelete = (id) => {
+    this.setState(prevState => ({
+      education: prevState.work.filter(educationObj => educationObj.id !== id)
+    }))
+  };
 
   render(){
     return (
       <ThemeProvider theme={theme}>
+        {/* Navigation Bar */}
         <Navbar />
+
+
+        {/* Main Form */}
         <Container>
           <Grid container spacing={8}>
             <Grid item xs={12} sm={6}>
-              <Userform fields={this.state} handlePersonalFields={this.handlePersonalFields} handleWorkFields={this.handleWorkFields} handleEducationFields={this.handleEducationFields} />
+              <Userform fields={this.state} 
+                        addHandler={this.handleAddBtn} 
+                        handlePersonalFields={this.handlePersonalFields} 
+                        handleWorkFields={this.handleWorkFields} 
+                        handleEducationFields={this.handleEducationFields}
+                        handleWorkDelete={this.handleWorkDelete}
+                        handleEducationDelete={this.handleEducationDelete}
+                        />
             </Grid>
+            {/* Preview */}
             <Grid item xs={12} sm={6}>
               <Preview prev={this.state} />
             </Grid>
           </Grid>
         </Container>
-        <Box sx={{
+
+
+        {/* footer */}
+        <Box component='footer' sx={{
           backgroundColor:'#757ce8',
           display: 'flex',
           justifyContent: 'center',
@@ -84,7 +148,7 @@ class App extends Component{
         }}>
           
           <Typography variant='overline' sx={{fontSize:'0.8rem'}}>
-                Copyright Desiangel
+                Copyright &copy; Muhammad Sameer Ahmed
           </Typography>
           <Link href='https://github.com/sameer-98'>
             <IconButton>
