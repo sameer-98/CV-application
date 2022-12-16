@@ -11,12 +11,12 @@ class EducationExp extends Component{
 
     }
 
-    handleChange(event){
-        this.props.handler(event.target.name,event.target.value)
+    handleChange(event, id){
+        this.props.handler(event.target.name,event.target.value, id)
     };
 
-    handleDelete(event){
-        this.props.deleteHandler(event.target.id)
+    handleDelete(id){
+        this.props.deleteEducationHandler(id)
     }
 
     render(){

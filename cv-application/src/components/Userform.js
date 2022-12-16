@@ -26,13 +26,13 @@ class Userform extends Component{
                 <Typography gutterBottom variant="h5" color="primary" sx={{marginLeft: '0',marginTop: '40px'}}>
                     Work Experience
                 </Typography>
-                <WorkExp fieldValues={work} handler={handleWorkFields} deleteHandler={handleWorkDelete}/>
+                <WorkExp fieldValues={work} handler={handleWorkFields} deleteWorkHandler={handleWorkDelete}/>
                 <Button fullWidth onClick={this.addHandler} id="work" variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
             
                 <Typography gutterBottom variant="h5" color="primary" sx={{paddingLeft: '0', marginTop: '40px'}}>
                     Education Experience
                 </Typography>
-                <EducationExp fieldValues={education} handler={handleEducationFields} deleteHandler={handleEducationDelete}/>
+                <EducationExp fieldValues={education} handler={handleEducationFields} deleteEducationHandler={handleEducationDelete}/>
                 <Button fullWidth onClick={this.addHandler} id="education" variant="contained" size="large" sx={{ m: 1 }}>Add</Button>
             </Paper>);
     }

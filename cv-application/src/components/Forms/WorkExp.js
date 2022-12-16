@@ -11,11 +11,11 @@ class WorkExp extends Component{
         this.handleDelete = this.handleDelete.bind(this)
     }
 
-    handleChange(event){
-        this.props.handler(event.target.name,event.target.value)
+    handleChange(event, id){
+        this.props.handler(event.target.name,event.target.value, id)
     }
-    handleDelete(event){
-        this.props.deleteHandler(event.target.id)
+    handleDelete(id){
+        this.props.deleteWorkHandler(id)
     }
     
     render(){
@@ -33,7 +33,7 @@ class WorkExp extends Component{
                         id={item.id}
                         position={item.position}
                         company={item.company}
-                        city={item.company}
+                        city={item.city}
                         workStart={item.workStart}
                         workEnd={item.workEnd}
                         handleChange={this.handleChange}

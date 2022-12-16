@@ -44,22 +44,31 @@ class App extends Component{
       }],
     }
   }
-  handleWorkFields = (fieldName, value) => {
+  // Logic to Handle work fields
+  handleWorkFields = (fieldName, value, id) => {
     this.setState(prevState => ({
       work: prevState.work.map(workObj => {
-        return{...workObj, [fieldName]: value}
+        if (workObj.id === id){
+          workObj[fieldName] = value
+        }
+        return workObj
       })
+      
   }));
   }
+  // logic to handle personal fields
   handlePersonalFields = (fieldName, value) => {
     this.setState(prevState => ({
       personal:{...prevState.personal, [fieldName]: value}
     }));
   }
-  handleEducationFields = (fieldName, value) => {
+  handleEducationFields = (fieldName, value, id) => {
     this.setState(prevState => ({
       education: prevState.education.map(educationObj => {
-        return{...educationObj, [fieldName]: value}
+        if (educationObj.id === id){
+          educationObj[fieldName] = value
+        }
+        return educationObj
       })
     }));
   }
@@ -102,7 +111,7 @@ class App extends Component{
   };
   handleEducationDelete = (id) => {
     this.setState(prevState => ({
-      education: prevState.work.filter(educationObj => educationObj.id !== id)
+      education: prevState.education.filter(educationObj => educationObj.id !== id)
     }))
   };
 
