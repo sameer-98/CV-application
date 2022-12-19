@@ -21,11 +21,7 @@ class WorkExp extends Component{
     render(){
 
         return(
-            <Box component="form" sx={{
-                width: 500,
-                maxWidth: '100%',
-                margin: '0 auto'
-            }}>
+            <Box component="form">
             {
                 this.props.fieldValues.map(item => {
                     return <ExperienceItems

@@ -22,9 +22,7 @@ class EducationExp extends Component{
     render(){
         return(
             <Box component="form" sx={{
-                width: 500,
-                maxWidth: '100%',
-                margin: '0 auto'
+                width: '100%'
             }}>
             {
                 this.props.fieldValues.map(item => {

@@ -15,11 +15,7 @@ class Personal extends Component{
     }
     render(){
         return(
-            <Box component="form"
-                sx={{
-                    width: 500,
-                    maxWidth: '100%',
-                    }}>
+            <Box component="form">
                     <Grid>
                         <Grid item xs={12}>
                             <TextField fullWidth autoComplete="off" value={this.props.firstName} name="firstName" onChange={this.handleChange} label="First Name" sx={{ m: 1 }} color="secondary" size="small" />

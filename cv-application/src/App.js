@@ -3,7 +3,6 @@ import  { Component } from 'react';
 import Navbar from './components/Navigation';
 import { ThemeProvider } from '@emotion/react';
 import theme from './components/Theme';
-import { Container } from '@mui/system';
 import { Grid, Box, Typography, Link, IconButton } from '@mui/material';
 import Userform from './components/Userform';
 import Preview from './components/Preview';
@@ -123,9 +122,11 @@ class App extends Component{
 
 
         {/* Main Form */}
-        <Container>
-          <Grid container spacing={8}>
-            <Grid item xs={12} sm={6}>
+          <Grid container   
+            direction="row"
+            justifyContent="space-evenly"
+            spacing={2}>
+            <Grid item xs={12} lg={4}>
               <Userform fields={this.state} 
                         addHandler={this.handleAddBtn} 
                         handlePersonalFields={this.handlePersonalFields} 
@@ -136,11 +137,10 @@ class App extends Component{
                         />
             </Grid>
             {/* Preview */}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} lg={6}>
               <Preview prev={this.state} />
             </Grid>
           </Grid>
-        </Container>
 
 
         {/* footer */}
