@@ -26,11 +26,7 @@ class Preview extends Component{
                 <WorkSection workList={work} />
             </Grid>
             <Box>
-                <p>{education.institute}</p>
-                <p>{education.city}</p>
-                <p>{education.degree}</p>
-                <p>{education.educationStart}</p>
-                <p>{education.educationEnd}</p>
+
             </Box>
 
             
