@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Box } from "@mui/system";
 import { Paper, Grid, Typography } from "@mui/material";
 import Header from "./CVPreview/header";
 import WorkSection from "./CVPreview/Worklist";
+import Qualifications from "./CVPreview/Qualifications";
 
 
 class Preview extends Component{
@@ -10,7 +10,7 @@ class Preview extends Component{
 
     render(){
         const {personal, work, education} = this.props.prev
-        return (<Paper elevation={3} sx={{ p: 3}}>
+        return (<Paper elevation={3} sx={{ height: '50%', p:4  }}>
             <Grid>
                 <Header personal={personal} />
             </Grid>
@@ -22,13 +22,12 @@ class Preview extends Component{
                         {personal.description}
                 </Typography>
             </Grid>
-            <Grid>
+            <Grid sx={{mb: 2}}>
                 <WorkSection workList={work} />
             </Grid>
-            <Box>
-
-            </Box>
-
+            <Grid>
+                <Qualifications qualifications={education} />
+            </Grid>
             
         </Paper>);
     }

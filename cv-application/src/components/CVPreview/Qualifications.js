@@ -1,7 +1,6 @@
 import { Typography, Box, Table, TableRow, TableCell, TableBody } from "@mui/material";
 import format from 'date-fns/format'
 
-
 const dateConverter = (date) => {
     if(date !== ''){
         const newDate = format(new Date(date),"MMM, yyyy");
@@ -9,8 +8,8 @@ const dateConverter = (date) => {
     }
 }
 
-const WorkSection = (props) => {
-    const { workList } = props;
+const Qualifications = (props) => {
+    const { qualifications } = props;
     return(
         <Box>
             <Typography variant="h6" sx={{
@@ -18,20 +17,20 @@ const WorkSection = (props) => {
                  borderBottom:'2px solid',
                   borderColor: 'primary.main',
                   fontWeight: 'bold',
-                  color:'primary.dark'}}>Work Experience
+                  color:'primary.dark'}}>Education
             </Typography>
             <Table >
                 <TableBody>
-                    {workList.map(item => (
+                    {qualifications.map(item => (
                       <TableRow key={item.id}>
                         <TableCell sx={{width: 300}}>
                             <Typography variant="h6">
-                                {dateConverter(item.workStart)} - {dateConverter(item.workEnd)}
+                                {dateConverter(item.educationStart)} - {dateConverter(item.educationEnd)}
                             </Typography>
                         </TableCell>
                         <TableCell>
-                            <Typography variant="h6" sx={{mb: 1}}>{ item.position }</Typography>
-                            <Typography variant="subtitle1" sx={{mb:2}}>{ item.company }, {item.city}</Typography>
+                            <Typography variant="h6" sx={{mb: 1}}>{ item.institute }, {item.city} </Typography>
+                            <Typography variant="subtitle1" sx={{mb:2}}>{ item.degree }</Typography>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -39,6 +38,6 @@ const WorkSection = (props) => {
             </Table>
         </Box>
     );
-};
+}
 
-export default WorkSection;
+export default Qualifications;
